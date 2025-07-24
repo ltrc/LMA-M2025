@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CL3410: Language Models and Agents - Monsoon 2025 - Language Technologies Research Center, IIIT Hyderabad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .header .subtitle {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .instructor-info {
+            text-align: right;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .instructor-info a {
+            color: #2563eb;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        .instructor-info a:hover {
+            color: #1d4ed8;
+        }
+
+        /* Navigation */
+        .nav {
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 12px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #1d4ed8;
+        }
+
+        /* Announcements */
+        .announcements {
+            background: #eff6ff;
+            border-bottom: 1px solid #bfdbfe;
+            padding: 24px 0;
+        }
+
+        .announcements h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .announcement-card {
+            background: white;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 16px;
+            min-height: 100px;
+        }
+
+        .announcement-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 8px;
+        }
+
+        .announcement-title {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .announcement-date {
+            font-size: 14px;
+            color: #6b7280;
+            margin-left: 16px;
+            flex-shrink: 0;
+        }
+
+        .announcement-content {
+            color: #374151;
+        }
+
+        /* Sections */
+        .section {
+            padding: 32px 0;
+        }
+
+        .section.bg-gray {
+            background: #f9fafb;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 24px;
+        }
+
+        .section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .section h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .section p {
+            color: #374151;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        /* Grid layouts */
+        .grid {
+            display: grid;
+            gap: 32px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .card-gray {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        /* Tables */
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f3f4f6;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-top: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .course-details-table {
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .course-details-table td {
+            padding: 4px 0;
+        }
+
+        .course-details-table .label {
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .course-details-table .value {
+            color: #6b7280;
+        }
+
+        /* Links */
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #1d4ed8;
+        }
+
+        /* Lists */
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        /* Special sections */
+        .project-card {
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .mini-project {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+        }
+
+        .major-project {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+
+        .project-stages {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .stage {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .stage h5 {
+            font-weight: 500;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .stage .due-date {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .stage .description {
+            font-size: 12px;
+            color: #374151;
+        }
+
+        /* Footer */
+        .footer {
+            background: #f3f4f6;
+            border-top: 1px solid #e5e7eb;
+            padding: 32px 0;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .instructor-info {
+                text-align: left;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .announcement-header {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .announcement-date {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <h1>CL3410: Language Models and Agents</h1>
+                    <p class="subtitle">Monsoon 2025 • Language Technologies Research Center, IIIT Hyderabad</p>
+                </div>
+                <div class="instructor-info">
+                    <p>Instructors: 
+                        <a href="https://www.linkedin.com/in/vasuvarma/">Vasudeva Varma</a>, 
+                        <a href="https://www.linkedin.com/in/vandanmujadia/">Vandan Mujadia</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-links">
+                <a href="#overview">Course Info</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#assignments">Assignments</a>
+                <a href="#mini-project">Mini Project</a>
+                <a href="#major-project">Major Project</a>
+                <a href="#policies">Policies</a>
+                <a href="#resources">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Announcements -->
+    <section class="announcements">
+        <div class="container">
+            <h2>Announcements</h2>
+            <div class="announcement-card">
+                <div class="announcement-header">
+                    <h3 class="announcement-title">Welcome to CL3410!</h3>
+                    <span class="announcement-date">Jul 29, 2025</span>
+                </div>
+                <p class="announcement-content">Course website is now live. Please review the syllabus and course policies before the first class on July 31.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Information -->
+    <section id="overview" class="section">
+        <div class="container">
+            <h2>Course Information</h2>
+            <div class="grid grid-2">
+                <div>
+                    <h3>Course Description</h3>
+                    <p>Large Language Models (LLMs) are transforming how tasks are automated and personalized across domains. As LLMs evolve into interactive agents, they are set to drive the next major breakthrough in AI. This course introduces the foundations of LLMs, key capabilities for task automation, and essential infrastructures for building LLM agents. We will explore applications such as generation, tool augmentation, web automation, healthcare, and scientific research, while also addressing current limitations and future directions.</p>
+                    
+                    <p>Students will learn the theoretical foundations of transformer architectures, attention mechanisms, and modern training techniques including pre-training, fine-tuning, and reinforcement learning from human feedback. The course also covers AI agents, multi-agent systems, tool use, reasoning capabilities, and real-world applications. Students will implement key algorithms and build practical systems throughout the course.</p>
+                    
+                    <h3>Prerequisites</h3>
+                    <p>Students should have completed at least one graduate-level introductory course in AI/ML, such as Introduction to NLP, Statistical Methods in AI, Advanced NLP, or Information Retrieval and Extraction.</p>
+                </div>
+                
+                <div>
+                    <h3>Course Details</h3>
+                    <div class="card-gray">
+                        <table class="course-details-table">
+                            <tr>
+                                <td class="label">Course Code:</td>
+                                <td class="value">CL3410</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Credits:</td>
+                                <td class="value">4 units</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Lectures:</td>
+                                <td class="value">Mon/Thu 11:40 AM - 1:05 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Location:</td>
+                                <td class="value">H104, Himalaya Classrooms</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Instructor:</td>
+                                <td class="value">
+                                    <a href="https://www.linkedin.com/in/vasuvarma/">Vasudeva Varma</a>, 
+                                    <a href="https://www.linkedin.com/in/vandanmujadia/">Vandan Mujadia</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">Email:</td>
+                                <td class="value">vv@iiit.ac.in, vandan.mu@research.iiit.ac.in</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Office Hours:</td>
+                                <td class="value">TBA</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <h3 style="margin-top: 24px;">Teaching Assistants</h3>
+                    <p style="color: #6b7280; font-size: 14px;">TBA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule -->
+    <section id="schedule" class="section bg-gray">
+        <div class="container">
+            <h2>Schedule</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Events</th>
+                            <th>Deadlines</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Jul 31</strong></td>
+                            <td>
+                                <div style="font-weight: 500; margin-bottom: 8px;">Background, Course Logistics, Introduction to Language Technologies</div>
+                                <div style="font-size: 12px; color: #6b7280;">
+                                    <div style="margin-bottom: 4px;">Pre-lecture: <a href="#">Course Syllabus and Prerequisites Review</a></div>
+                                    <div style="margin-bottom: 8px;">Post-lecture: <a href="https://web.stanford.edu/~jurafsky/slp3/1.pdf">Jurafsky & Martin Ch. 1 - Introduction to NLP</a></div>
+                                    <div><a href="#">slides</a> | <a href="#">video</a> | <a href="#">quiz</a></div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aug 4</strong></td>
+                            <td>
+                                <div style="font-weight: 500; margin-bottom: 8px;">Word vectors and Language models, Transfer Learning</div>
+                                <div style="font-size: 12px; color: #6b7280;">
+                                    <div style="margin-bottom: 4px;">Pre-lecture: <a href="https://arxiv.org/pdf/1301.3781.pdf">Word2Vec Paper (Mikolov et al., 2013)</a></div>
+                                    <div style="margin-bottom: 8px;">Post-lecture: <a href="https://arxiv.org/pdf/2007.04239.pdf">Transfer Learning in NLP Survey (Qiu et al., 2020)</a></div>
+                                    <div><a href="#">slides</a> | <a href="#">video</a> | <a href="#">quiz</a></div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aug 7</strong></td>
+                            <td>
+                                <div style="font-weight: 500; margin-bottom: 8px;">Self Attention & Transformers</div>
+                                <div style="font-size: 12px; color: #6b7280;">
+                                    <div style="margin-bottom: 4px;">Pre-lecture: <a href="https://arxiv.org/pdf/1706.03762.pdf">Attention Is All You Need (Vaswani et al., 2017)</a></div>
+                                    <div style="margin-bottom: 8px;">Post-lecture: <a href="https://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer (Jay Alammar Blog)</a></div>
+                                    <div><a href="#">slides</a> | <a href="#">video</a> | <a href="#">quiz</a></div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aug 11</strong></td>
+                            <td>
+                                <div style="font-weight: 500; margin-bottom: 8px;">TBA</div>
+                                <div style="font-size: 12px; color: #6b7280;">
+                                    <div style="margin-bottom: 4px;">Pre-lecture: <a href="#">[reading title with link]</a></div>
+                                    <div style="margin-bottom: 8px;">Post-lecture: <a href="#">[reading title with link]</a></div>
+                                    <div><a href="#">slides</a> | <a href="#">video</a> | <a href="#">quiz</a></div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assignments -->
+    <section id="assignments" class="section">
+        <div class="container">
+            <h2>Assignments</h2>
+            
+            <div style="display: grid; gap: 24px; margin-bottom: 32px;">
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <h3>Assignment 1: TBD</h3>
+                        <div style="text-align: right; font-size: 14px; color: #6b7280;">
+                            <p>Released: TBD</p>
+                            <p>Due: TBD</p>
+                        </div>
+                    </div>
+                    <p style="margin-bottom: 16px;">Assignment details will be posted soon.</p>
+                    <div>
+                        <a href="#" style="font-size: 14px; font-weight: 500;">TBD</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <h3>Assignment 2: TBD</h3>
+                        <div style="text-align: right; font-size: 14px; color: #6b7280;">
+                            <p>Released: TBD</p>
+                            <p>Due: TBD</p>
+                        </div>
+                    </div>
+                    <p style="margin-bottom: 16px;">Assignment details will be posted soon.</p>
+                    <div>
+                        <a href="#" style="font-size: 14px; font-weight: 500;">TBD</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mini Project -->
+            <div id="mini-project" class="project-card mini-project">
+                <h3>Mini Project</h3>
+                <p>Project details will be posted soon.</p>
+                
+                <h4>Project Stages</h4>
+                <div class="project-stages">
+                    <div class="stage">
+                        <h5>Stage 1: Topic Selection</h5>
+                        <p class="due-date">Due: TBD</p>
+                        <p class="description">Evaluation criteria and expectations will be posted.</p>
+                    </div>
+                    <div class="stage">
+                        <h5>Stage 2: Implementation</h5>
+                        <p class="due-date">Due: TBD</p>
+                        <p class="description">Evaluation criteria and expectations will be posted.</p>
+                    </div>
+                    <div class="stage">
+                        <h5>Stage 3: Evaluation Period 1</h5>
+                        <p class="due-date">Due: TBD</p>
+                        <p class="description">Evaluation criteria and expectations will be posted.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Major Project -->
+            <div id="major-project" class="project-card major-project">
+                <h3>Major Project</h3>
+                <p>Project details will be posted soon.</p>
+                
+                <h4>Project Stages</h4>
+                <div class="project-stages">
+                    <div class="stage">
+                        <h5>Stage 1: Proposal</h5>
+                        <p class="due-date">Due: TBD</p>
+                        <p class="description">Evaluation criteria and expectations will be posted.</p>
+                    </div>
+                    <div class="stage">
+                        <h5>Stage 2: Midway Check-in</h5>
+                        <p class="due-date">Due: TBD</p>
+                        <p class="description">Evaluation criteria and expectations will be posted.</p>
+                    </div>
+                    <div class="stage">
+                        <h5>Stage 3: Final Report</h5>
+                        <p class="due-date">Due: TBD</p>
+                        <p class="description">Evaluation criteria and expectations will be posted.</p>
+                    </div>
+                    <div class="stage">
+                        <h5>Stage 4: Presentations</h5>
+                        <p class="due-date">Date: TBD</p>
+                        <p class="description">Evaluation criteria and expectations will be posted.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policies -->
+    <section id="policies" class="section bg-gray">
+        <div class="container">
+            <h2>Course Policies</h2>
+            
+            <div style="display: grid; gap: 32px;">
+                <div class="card">
+                    <h3>Grading</h3>
+                    <div class="grid grid-2">
+                        <div>
+                            <table style="width: 100%; font-size: 14px;">
+                                <tr>
+                                    <td style="padding: 4px 0; font-weight: 500; color: #374151;">Mini Project (Proposal, Prototype, Presentation)</td>
+                                    <td style="padding: 4px 0; color: #6b7280;">20%</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 4px 0; font-weight: 500; color: #374151;">Major Project (Proposal, Prototype, Presentation, Team work, Learning)</td>
+                                    <td style="padding: 4px 0; color: #6b7280;">40%</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 4px 0; font-weight: 500; color: #374151;">Quizzes, Mid sem and assignments</td>
+                                    <td style="padding: 4px 0; color: #6b7280;">30%</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 4px 0; font-weight: 500; color: #374151;">Class Participation and Activities</td>
+                                    <td style="padding: 4px 0; color: #6b7280;">10%</td>
+                                </tr>
+                            </table>
+                            <p style="font-size: 14px; color: #6b7280; margin-top: 12px; font-style: italic;">No End Sem exam</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Late Policy</h3>
+                    <ul>
+                        <li>Assignments submitted late will be penalized 10% per day (including weekends)</li>
+                        <li>No assignments will be accepted more than 3 days late</li>
+                        <li>Each student has one "grace period" of 48 hours that can be used once during the semester</li>
+                        <li>Extensions may be granted for documented emergencies or health issues</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Academic Integrity</h3>
+                    <p>All work submitted must be your own. Plagiarism, copying from online sources, or unauthorized collaboration will result in a failing grade for the assignment and may result in a failing grade for the course.</p>
+                    <p>You may use AI tools (like ChatGPT, Copilot) for learning and understanding concepts, but not for generating solutions to assignments. Any use of AI tools must be disclosed in your submission.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" class="section">
+        <div class="container">
+            <h2>Resources</h2>
+            
+            <div style="display: grid; gap: 32px;">
+                <div>
+                    <h3>Reference Books</h3>
+                    <div style="display: grid; gap: 12px;">
+                        <div style="border-left: 4px solid #2563eb; padding-left: 16px;">
+                            <p style="font-weight: 500; color: #111827; margin-bottom: 4px;">
+                                <a href="https://www.deeplearningbook.org/">Deep Learning</a>
+                            </p>
+                            <p style="color: #6b7280; font-size: 14px; margin-bottom: 4px;">Ian Goodfellow, Yoshua Bengio, and Aaron Courville</p>
+                            <p style="color: #059669; font-size: 14px;">Free online version available</p>
+                        </div>
+                        <div style="border-left: 4px solid #2563eb; padding-left: 16px;">
+                            <p style="font-weight: 500; color: #111827; margin-bottom: 4px;">
+                                <a href="https://www.nltk.org/book/">Natural Language Processing with Python</a>
+                            </p>
+                            <p style="color: #6b7280; font-size: 14px; margin-bottom: 4px;">Steven Bird, Ewan Klein, and Edward Loper</p>
+                            <p style="color: #059669; font-size: 14px;">Free online version available</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Tools and Libraries</h3>
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <h4><a href="https://huggingface.co/transformers/">Hugging Face Transformers</a></h4>
+                            <p style="color: #6b7280; font-size: 14px;">State-of-the-art NLP library</p>
+                        </div>
+                        <div class="card">
+                            <h4><a href="https://pytorch.org/">PyTorch</a></h4>
+                            <p style="color: #6b7280; font-size: 14px;">Deep learning framework</p>
+                        </div>
+                        <div class="card">
+                            <h4><a href="https://langchain.com/">LangChain</a></h4>
+                            <p style="color: #6b7280; font-size: 14px;">Framework for LLM applications</p>
+                        </div>
+                        <div class="card">
+                            <h4><a href="https://openai.com/api/">OpenAI API</a></h4>
+                            <p style="color: #6b7280; font-size: 14px;">Access to GPT models</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Additional Resources</h3>
+                    <p style="color: #6b7280; font-size: 14px;">Additional resources will be posted as the course progresses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Language Technologies Research Center, International Institute of Information Technology, Hyderabad</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
