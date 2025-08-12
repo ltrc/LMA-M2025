@@ -309,6 +309,13 @@
             color: #374151;
         }
 
+        .stage .deliverables
+        {
+            font-size: 12px;
+            color:#424449;
+            font-weight: 500;
+        }
+
         /* Footer */
         .footer {
             background: #f3f4f6;
@@ -390,7 +397,15 @@
                 </div>
                 <p class="announcement-content">Course website is now live. Please review the syllabus and course policies before the first class on July 31.</p>
             </div>
+            <div class="announcement-card">
+                <div class="announcement-header">
+                    <h3 class="announcement-title">Mini-Project has been posted</h3>
+                    <span class="announcement-date">Aug 11, 2025</span>
+                </div>
+                <p class="announcement-content">Please check the course website for details on the Mini-Project. The deadline for final submission is September 15, 2025.</p>
+            </div>
         </div>
+        
     </section>
 
     <!-- Course Information -->
@@ -447,7 +462,24 @@
                     </div>
                     
                     <h3 style="margin-top: 24px;">Teaching Assistants</h3>
-                    <p style="color: #6b7280; font-size: 14px;">TBA</p>
+                    <table class="course-details-table">
+                        <tr>
+                            <th class="label">Name</th>
+                            <th class="label">Email</th>
+                        </tr>
+                        <tr>
+                            <td class="value">Sankalp Bahad</td>
+                            <td class="value"><a href="mailto:sankalp.bahad@research.iiit.ac.in">sankalp.bahad@research.iiit.ac.in</a></td>
+                        </tr>
+                        <tr>
+                            <td class="value">Harsh Gupta</td>
+                            <td class="value"><a href="mailto:harsh.g@students.iiit.ac.in">harsh.g@students.iiit.ac.in</a></td>
+                        </tr>
+                        <tr>
+                            <td class="value">Ishan Gupta</td>
+                            <td class="value"><a href="mailto:ishan.gupta@research.iiit.ac.in">ishan.gupta@research.iiit.ac.in</a></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -561,24 +593,45 @@
             <!-- Mini Project -->
             <div id="mini-project" class="project-card mini-project">
                 <h3>Mini Project</h3>
-                <p>Project details will be posted soon.</p>
-                
-                <h4>Project Stages</h4>
+                <p>The aim of this mini-project is to build a small autoregressive language model (LM) for multiple languages from scratch. 
+                <br>This is an individual project where you will handle the entire workflow from data collection to training and fine-tuning the model.<br></p>
+                <h4>Project Timeline</h4>
                 <div class="project-stages">
                     <div class="stage">
-                        <h5>Stage 1: Topic Selection</h5>
-                        <p class="due-date">Due: TBD</p>
-                        <p class="description">Evaluation criteria and expectations will be posted.</p>
+                        <h5>Phase 1: Data Collection & Preprocessing</h5>
+                        <p class="description">
+                        Collect corpus for three languages: English (50% of total tokens), Mother tongue (30–40% of total tokens), and an Indian language (10–20% of total tokens).<br>
+                        Collect atleast 3 billion tokens in total and perform data preprocessing including cleaning, deduplication, and segmentation.<br>
+                        <p class="deliverables">Deliverables: Scripts and token statistics.</p>
+                    </p>
                     </div>
                     <div class="stage">
-                        <h5>Stage 2: Implementation</h5>
-                        <p class="due-date">Due: TBD</p>
-                        <p class="description">Evaluation criteria and expectations will be posted.</p>
+                        <h5>Phase 2: Tokenization</h5>
+                        <p class="description">
+                        Train a tokenizer such as BPE, SentencePiece etc. and ensure that the vocabulary supports all three languages adequately.<br>
+                        <p class="deliverables">Deliverables: Tokenizer files and evaluation of token coverage.</p>
                     </div>
                     <div class="stage">
-                        <h5>Stage 3: Evaluation Period 1</h5>
-                        <p class="due-date">Due: TBD</p>
-                        <p class="description">Evaluation criteria and expectations will be posted.</p>
+                        <h5>Mid-evaluation</h5>
+                        <p class="due-date">Due: 28th August 2025</p>
+                        <p class="deliverables">Deliverables: Phase 1 and Phase 2 deliverables along with report explaining the work done and action plan for Phases 3-5.</p>
+                    </div>
+                    <div class="stage">
+                        <h5>Phase 3: Pre-training</h5>
+                        <p class="description">Use the given model type with a parameter size between <b>100M-150M</b> and train an autoregressive LM using the processed corpus and a suitable framework such as <b>PyTorch</b>, <b>Tensorflow</b>, etc.<br>
+                        You may use free-tier compute platforms such as Kaggle, Google Colab, etc. with checkpointing to avoid losing progress due to resource limits.</p>
+                        <p class="deliverables">Deliverables: Pretrained model checkpoints and training logs</p>
+                    </div>
+                    <div class="stage">
+                        <h5>Phase 4: Fine-tuning on Reasoning Tasks</h5>
+                        <p class="description">Fine-tune the pretrained model for the 2 reasoning tasks assigned to you using chat-style templates.<b>Do not make the model memorize the tasks- this will be checked during evaluation.</b></p>
+                        <p class="deliverables">Deliverables: Fine-tuned model and scripts.</p>
+                    </div>
+                    <div class="stage">
+                        <h5>Phase 5: Evaluation and Analysis</h5>
+                        <p class="due-date">Due: 15th September 2025</p>
+                        <p class="description">Evaluate the pre-trained and fine-tuned models using metrics such as perplexity, accuracy etc. , perform error analysis and discuss your observations.</p>
+                        <p class="deliverables">Deliverables: Phase 3 and Phase 4 deliverables along with a detailed report containing your approach, methodology, experiment details, results and discussion of the results.</p>
                     </div>
                 </div>
             </div>
